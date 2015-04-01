@@ -1,0 +1,17 @@
+{
+  "name": "ng-iscroll-hm",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+  },
+  "devDependencies": {
+    "bower": "^1.3.12",
+    "gulp": "^3.8.11"
+  }
+}

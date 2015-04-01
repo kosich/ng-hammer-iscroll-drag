@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html ng-app='app' >
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <link rel="stylesheet" href="./style.css" />
+        <style>
+            html, body{
+                height : 100%;
+                width: 100%;
+                background-color:#666;
+                padding: 0;
+                margin: 0;
+            }
+            #wrapper {
+                height:300px;
+            }
+            .item{
+                border: 1px solid white;
+                padding: 0.5em;
+                margin: 0.5em;
+                background-color:#ccc;
+            }
+
+        </style>
+    </head>
+    <body ng-controller='main as main'
+        ng-class="{
+        'iscroll-on': main.iScrollState.useIScroll,
+        'iscroll-off': !main.iScrollState.useIScroll
+        }">
+
+        {{ dragging.value }}
+
+        <input type="text" placeholder="im focusable" onfocus="console.log('field got a focus')" />
+        <p ng-click="main.log('im clickable')">
+            im clickable
+        </p>
+
+        <div id='wrapper'>
+            <div class="iscroll-wrapper" iscroll iscroll-instance="main.iScrollInstance">
+                <div class="iscroll-scroller" drag-scroll="main.iScrollInstance">
+                    <div ng-repeat='i in items track by $index' >
+                        <div ng-controller='item as item'>
+                            <div class="item"
+                                dnd
+                                dnd-dragstart='item.dragstart($event)'
+                                dnd-drag='item.drag($event)'
+                                dnd-dragend='item.dragend($event)'
+                                hm-tap="main.log('tapped')"
+                                hm-doubletap="main.log('double tapped')"
+                                hm-manager-options='{"preventGhosts":true}'
+                                >
+
+                                {{ i }} tap or doubletap me
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src='./bower_components/jquery/dist/jquery.js'></script>
+        <script src='./bower_components/angular/angular.js'></script>
+        <script src='./bower_components/iScroll/build/iscroll-probe.js'></script>
+        <script src='./bower_components/angular-iscroll/src/lib/angular-iscroll.js'></script>
+        <script src="./bower_components/hammerjs/hammer.js"></script>
+        <script src='./ryanmullins-angular-hammer/angular.hammer.js'></script>
+        <!-- <script src="./tapStop.js"></script> -->
+        <!-- <script> -->
+        <!--     if (document.addEventListener) { -->
+        <!--         document.addEventListener('touchmove', function(e){ -->
+        <!--             e.preventDefault(); -->
+        <!--         }); -->
+        <!--     } -->
+        <!-- </script> -->
+
+
+        <script src='./app-module.js'></script>
+        <script src='./dragging-indicator-value.js'></script>
+        <script src='./drag-scroll-directive.js'></script>
+        <script src='./dnd-dir.js'></script>
+        <script src='./item.js'></script>
+        <script src='./main.js'></script>
+
+    </body>
+</html>
